@@ -9,4 +9,12 @@ public class Field {
 	public Field(int size) {
 		//createCells(size);
 	}
+	
+	/**
+	 * текстовое представление игрового поля
+	 * @return поле в тестовом виде
+	 */
+	public String getField() {
+		return null;
+	}
 }

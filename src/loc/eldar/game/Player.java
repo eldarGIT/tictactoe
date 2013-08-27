@@ -20,4 +20,8 @@ public class Player {
 		this.name = name;
 		this.piece = piece;
 	}
+	
+	public int getId() {
+		return this.id;
+	}
 }
