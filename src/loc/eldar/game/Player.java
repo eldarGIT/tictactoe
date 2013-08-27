@@ -21,7 +21,15 @@ public class Player {
 		this.piece = piece;
 	}
 	
+	/**
+	 * Получить id пользователя
+	 * @return id пользователя
+	 */
 	public int getId() {
 		return this.id;
+	}
+	
+	public Piece getPiece() {
+		return this.piece;
 	}
 }

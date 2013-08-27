@@ -52,6 +52,13 @@ public class Game {
 		
 		/** получить игрока по id */
 		Player player = getPlayer(id);
+		
+		if(player == null) {
+			return;
+		}
+		
+		/** разместить фигуру игрока на поле */
+		field.place(player.getPiece(), value);
 	}
 	
 	/**
