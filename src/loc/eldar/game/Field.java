@@ -1,5 +1,7 @@
 package loc.eldar.game;
 
+import java.lang.StringBuilder;
+
 public class Field {
 	
 	/** массив ячеек игрового поля */
@@ -18,7 +20,18 @@ public class Field {
 	 * @return поле в тестовом виде
 	 */
 	public String getField() {
-		return null;
+		StringBuilder sb = new StringBuilder();
+		
+		for(int i = 0; i < cells.length; i++) {
+			if(cells[i].getPiece() == null) {
+				sb.append("_");
+			} else {
+				sb.append(cells[i].getPiece());
+			}
+			sb.append(", ");
+		}
+		
+		return sb.toString();
 	}
 	
 	/**
@@ -26,11 +39,15 @@ public class Field {
 	 * @param piece - фигура
 	 * @param number - номер ячейки
 	 */
-	public void place(Piece piece, int number) {
+	public boolean place(Piece piece, int number) {
 		
 		if(number >= 0 && number < cells.length && piece != null) {
-			cells[number].setPiece(piece);
+			if(cells[number].getPiece() == null) {
+				cells[number].setPiece(piece);
+				return true;
+			}
 		}
+		return false;
 	}
 	
 	/**

@@ -6,6 +6,8 @@ public class Game {
 	private Field field;
 	// Массив игроков
 	private Player[] players = new Player[2];
+	// Активный игрок
+	int activePlayer;
 	
 	/**
 	 * Конструктор класса Game
@@ -13,6 +15,10 @@ public class Game {
 	 */
 	public Game(int size) {
 		field = new Field(size);
+	}
+	
+	public void init() {
+		activePlayer = 0;
 	}
 	
 	/**
@@ -37,6 +43,11 @@ public class Game {
 				index = 1;
 			}
 			
+			// если игрок не передал имя
+			if(name.isEmpty()) {
+				name = String.format("Игрок %d", index + 1);
+			}
+			
 			players[index] = new Player(id, name, piece);
 			return true;
 		}
@@ -53,12 +64,20 @@ public class Game {
 		/** получить игрока по id */
 		Player player = getPlayer(id);
 		
-		if(player == null) {
+		if(player == null || player != players[activePlayer]) {
 			return;
 		}
 		
 		/** разместить фигуру игрока на поле */
-		field.place(player.getPiece(), value);
+		boolean placeStatus = field.place(player.getPiece(), value);
+		
+		if(placeStatus) {
+			if(activePlayer == 0) {
+				activePlayer = 1;
+			} else {
+				activePlayer = 0;
+			}
+		}
 	}
 	
 	/**

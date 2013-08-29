@@ -29,7 +29,15 @@ public class Player {
 		return this.id;
 	}
 	
+	/**
+	 * Получить фигуру игрока
+	 * @return Piece - фигура игрока
+	 */
 	public Piece getPiece() {
 		return this.piece;
+	}
+	
+	public String getName() {
+		return this.name;
 	}
 }

@@ -22,4 +22,8 @@ public class Cell {
 			this.piece = piece;
 		}
 	}
+	
+	public Piece getPiece() {
+		return this.piece;
+	}
 }
