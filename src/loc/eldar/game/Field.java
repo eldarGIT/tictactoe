@@ -1,11 +1,13 @@
 package loc.eldar.game;
 
 import java.lang.StringBuilder;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Field {
 	
 	/** массив ячеек игрового поля */
-	private Cell[] cells;
+	private List<Cell> cells;
 
 	/**
 	 * Конструктор класса Field
@@ -22,11 +24,11 @@ public class Field {
 	public String getField() {
 		StringBuilder sb = new StringBuilder();
 		
-		for(int i = 0; i < cells.length; i++) {
-			if(cells[i].getPiece() == null) {
+		for(int i = 0; i < cells.size(); i++) {
+			if(cells.get(i).getPiece() == null) {
 				sb.append("_");
 			} else {
-				sb.append(cells[i].getPiece());
+				sb.append(cells.get(i).getPiece());
 			}
 			sb.append(", ");
 		}
@@ -41,9 +43,9 @@ public class Field {
 	 */
 	public boolean place(Piece piece, int number) {
 		
-		if(number >= 0 && number < cells.length && piece != null) {
-			if(cells[number].getPiece() == null) {
-				cells[number].setPiece(piece);
+		if(number >= 0 && number < cells.size() && piece != null) {
+			if(cells.get(number).getPiece() == null) {
+				cells.get(number).setPiece(piece);
 				return true;
 			}
 		}
@@ -56,9 +58,13 @@ public class Field {
 	 */
 	private void createCells(int size) {
 		
-		cells = new Cell[size * size];
-		for(int i = 0; i < cells.length; i++) {
-			cells[i] = new Cell(i);
+		cells = new ArrayList<Cell>(size * size);
+		for(int i = 0; i < cells.size(); i++) {
+			cells.add(new Cell(i));
 		}
+	}
+	
+	public Piece getPiece(int number) {
+		return cells.get(number).getPiece();
 	}
 }

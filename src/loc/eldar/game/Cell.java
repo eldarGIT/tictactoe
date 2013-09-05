@@ -23,6 +23,10 @@ public class Cell {
 		}
 	}
 	
+	/**
+	 * Получить фигуру игрока
+	 * @return значение фигуры игрока
+	 */
 	public Piece getPiece() {
 		return this.piece;
 	}
